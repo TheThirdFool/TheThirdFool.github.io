@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dan's Internet Vibes - Projects using HistoGUI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<p>
+If you have read your full or are not interested, you can go back to the <a href="HistoGUI_Description.html">main page</a>.
+</p>
+
+<h2>My Projects</h2>
+<p>
+These are a few selected instances where <b>HistoGUI</b> has been useful in my research as a quick and easy to use GUI. These push forwards the development of new features as I need them and the identification of bugs as I find them!<br>
+</p>
+
+<h3>Online data monitoring for a MightyPix testbench</h3>
+<p>
+The <a href="https://iopscience.iop.org/article/10.1088/1748-0221/19/04/C04045">MightyPix</a> is a HV-CMOS particle tracking sensor. In order to monitor the live data outputted by this sensor from a GECCO board, I used <b>HistoGUI</b>. To do this, I had to rewrite the refresh function to fill new data. This saves me from installing ROOT (or some other plotting software) on a computer and allows for live hitmaps and ToT distributions. The code is <a href="https://gitlab.cern.ch/dfouldsh/liveplotmp/-/tree/master?ref_type=heads">here</a> but is only accessable to those with a CERN login (sorry). Here are some of the plots:<br>
+</p>
+<img src="../Images/MP_HM.png"  alt="MightyPix ToT" width="500"> 
+<img src="../Images/MP_ToT.png" alt="MightyPix HM"  width="500"> 
+
+
+
+<h3>Displaying and altering a MightyPix TDAC file</h3>
+<p>
+I wanted a GUI to show the various pixels in a TDAC pixel map. I could have made this in ROOT but I thought it would be cool to be able to turn the mask on and off with my mouse... <b>HistoGUI</b> to the resuce! I repurposed the 'Crosshairs' function to turn off and on pixels and was very happy with the result! The code is also <a href="https://gitlab.cern.ch/dfouldsh/liveplotmp/-/tree/master?ref_type=heads">here</a>. Here is one of the pixel maps I edited:<br>
+</p>
+<img src="../Images/PixMaskEdited.png" alt="An edited pixel map saying Dan" width="1000"> 
+
+
+<h2>Your Projects!</h2>
+<p>
+Way more excitingly I would love to feature some examples of other poeple using <b>HistoGUI</b> here! Please <a href="https://www.ph.ed.ac.uk/people/dan-foulds-holt">get in touch</a> with me if you have anything to show - however small it does not matter! :) 
+</p>
+
+
