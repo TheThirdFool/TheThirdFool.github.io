@@ -1,0 +1,121 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dan's Internet Vibes - HistoGUI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<body>
+<a href="HistoGUI_Description.html">Main page</a>
+
+<h1>HistoGUI user guide</h1>
+<p>
+<b><a href="https://github.com/TheThirdFool/HistoGUI">HistoGUI</a></b> can be easily implemented into any c++ project, allowing for simple interactive plotting. This details some of the commands in the HistoGUI class - although as it is ever evolving, this list may be slightly out of date.<br>
+</p>
+
+<h4>Functions</h4>
+<ul>
+<li><a href="#general">General points</a></li>
+<li><a href="#Init">Init()</a></li>
+<li><a href="#Loop">Loop()</a></li>
+<li><a href="#Close">Close()</a></li>
+<li><a href="#Help">Help()</a></li>
+<li><a href="#HelpCode">HelpCode()</a></li>
+<li><a href="#MakeHist1D">MakeHist1D(int nBins, double lowBin, double highBin)</a></li>
+<li><a href="#MakeHist2D">MakeHist2D(int nBins_X, double lowBin_X, double highBin_X, int nBins_Y, double lowBin_Y, double highBin_Y)</a></li>
+<li><a href="#SetAxisTitles">SetAxisTitles(char* xAxis, char* yAxis)</a></li>
+<li><a href="#Fill1D">Fill(double val)</a></li>
+<li><a href="#Fill2D">Fill(double valX, double valY)</a></li>
+<li><a href="#SetAutoRefresh">SetAutoRefresh(bool a, long milisec)</a></li>
+<li><a href="#SetData">SetData(std::vector&ltdouble&gt a, std::vector&ltdouble&gt b)</a></li>
+<li><a href="#SetData2D">SetData2D(std::vector&ltdouble&gt a, std::vector&ltdouble&gt b, std::vector&lt std::vector&ltdouble&gt &gt c)</a></li>
+<li><a href="#Set2D">Set2D(bool a)</a></li>
+</ul>
+
+<h4>Redefineable functions</h4>
+<ul>
+<li><a href="#DrawCrosshairs">DrawCrosshairs(int mouse_x, int mouse_y)</a></li>
+<li><a href="#Refresh">Refresh()</a></li>
+</ul>
+
+<hr/>
+
+<h3 id="general">General points</h3>
+<b>HistoGUI</b> interfaces with X11 functions directly to plot data. The data and plotting functions are held within a HistoGUI class object. The class is entirely public, so data can be directly accessed, however it is recommended to populate using the commands listed here.
+<hr/>
+
+<h3 id="Init">Init()</h3>
+Initalizes the GUI objects. Is necessary for the GUI to start.
+<hr/>
+
+<h3 id="Loop">Loop()</h3>
+Starts the GUI and enters a loop.
+<hr/>
+
+<h3 id="Close">Close()</h3>
+Gracefully closes the GUI object.
+<hr/>
+
+<h3 id="Help">Help()</h3>
+Prints GUI commands to the terminal - useful for reference by new users.
+<hr/>
+
+<h3 id="HelpCode">HelpCode()</h3>
+Prints some useful coding info to the terminal - not that useful tbh.
+<hr/>
+
+<h3 id="MakeHist1D">MakeHist1D(int nBins, double lowBin, double highBin)</h3>
+Constructs a 1D histogram defined by the number of bins <code>nBins</code>, the low value <code>lowBin</code>, and the high value <code>highBin</code>.
+<hr/>
+
+<h3 id="MakeHist2D">MakeHist2D(int nBins_X, double lowBin_X, double highBin_X, int nBins_Y, double lowBin_Y, double highBin_Y)</h3>
+Constructs a 2D histogram defined by the number of bins in both axis <code>nBins_X</code> / <code>nBins_Y</code>, the low value <code>lowBin_X</code> / <code>lowBin_Y</code>, and the high value <code>highBin_X</code> / <code>highBin_Y</code>.
+<hr/>
+
+<h3 id="SetAxisTitles">SetAxisTitles(char* xAxis, char* yAxis)</h3>
+Set the axis titles. The same for both 1D and 2D histograms.
+<hr/>
+
+<h3 id="Fill1D">Fill(double val)</h3>
+Fill the 1D histogram. i.e. incriment the bin value that corresponds to <code>x = val</code>. This does it safely ensuring no memory errors.
+<hr/>
+
+<h3 id="Fill2D">Fill(double valX, double valY)</h3>
+Fill the 2D histogram. i.e. incriment the bin value that corresponds to <code>x = valX</code> and <code>y = valY</code>. This does it safely ensuring no memory errors.
+<hr/>
+
+<h3 id="SetAutoRefresh">SetAutoRefresh(bool a, long milisec)</h3>
+Sets whether the plot will auto refresh (<code>a = true</code>: refresh on), and the time inbetween refresh calls. The auto refresh can also be toggled in the GUI with a keypress of <code>s</code>. Returns milisec. 
+<hr/>
+
+<h3 id="SetData">SetData(std::vector&ltdouble&gt a, std::vector&ltdouble&gtb)</h3>
+<p>
+<i>[Depreciated - used MakeHist1D & Fill]</i> Loops across the vectors supplied and populates a 1D histogram with bin low edges defined by <code>a</code> and bin content defined by <code>b</code>.<br>
+<br>
+Also can take std::vector&ltfloat&gt for <code>b</code>.  
+</p>
+<hr/>
+
+<h3 id="SetData2D">SetData2D(std::vector&ltdouble&gt a, std::vector&ltdouble&gt b, std::vector&lt std::vector&ltdouble&gt &gt c)</h3>
+<p>
+<i>[Depreciated - use MakeHist2D & Fill]</i> Loops across the vectors provided and populates a 2D histogram with X bin low edges defined by <code>a</code>, Y bin low edges defined by <code>b</code>, and teh content of the bins supplied by <code>c</code>.<br>
+<br>
+<code>c</code> must be a vector of vectors containing nXbin vectors, each with nYbin elements. This allows for the data to be accessed as <code>c[x][y] = z</code>. 
+</p>
+<hr/>
+
+<h3 id="Set2D">Set2D(bool a)</h3>
+Specifies that the data to be drawn is 2D. Important as the vectors used for 1D histograms are the same as those used for the axis bins in 2D histograms.
+<hr/>
+
+
+<h3 id="DrawCrosshairs">DrawCrosshairs(int mouse_x, int mouse_y)</h3>
+Is called when the GUI is clicked. This is a <code>virtual int</code> function so can be redefined if you want to exacute some code that requires mouse position information.
+<hr/>
+
+<h3 id="Refresh">Refresh()</h3>
+As default this function does not do anything. It allows for the user to execute code that acts upon the plotted data without exiting the GUI. Allowing for example, live plotting.
+
+
+
