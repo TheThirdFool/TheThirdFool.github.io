@@ -17,17 +17,20 @@
 <h4>Functions</h4>
 <ul>
 <li><a href="#general">General points</a></li>
-<li><a href="#Init">Init()</a></li>
-<li><a href="#Loop">Loop()</a></li>
+<li><a href="#Show">Show()</a></li>
 <li><a href="#Close">Close()</a></li>
 <li><a href="#Help">Help()</a></li>
 <li><a href="#HelpCode">HelpCode()</a></li>
 <li><a href="#MakeHist1D">MakeHist1D(int nBins, double lowBin, double highBin)</a></li>
 <li><a href="#MakeHist2D">MakeHist2D(int nBins_X, double lowBin_X, double highBin_X, int nBins_Y, double lowBin_Y, double highBin_Y)</a></li>
-<li><a href="#SetAxisTitles">SetAxisTitles(char* xAxis, char* yAxis)</a></li>
 <li><a href="#Fill1D">Fill(double val)</a></li>
 <li><a href="#Fill2D">Fill(double valX, double valY)</a></li>
+<li><a href="#SetAxisTitles">SetAxisTitles(char* xAxis, char* yAxis)</a></li>
+<li><a href="#SetProjectionAxisTitle">SetProjectionAxisTitle(char* zAxis)</a></li>
 <li><a href="#SetAutoRefresh">SetAutoRefresh(bool a, long milisec)</a></li>
+<li><a href="#SetAdditive">SetAdditive(bool in = true)</a></li>
+<li><a href="#Init">Init()</a></li>
+<li><a href="#Loop">Loop()</a></li>
 <li><a href="#SetData">SetData(std::vector&ltdouble&gt a, std::vector&ltdouble&gt b)</a></li>
 <li><a href="#SetData2D">SetData2D(std::vector&ltdouble&gt a, std::vector&ltdouble&gt b, std::vector&lt std::vector&ltdouble&gt &gt c)</a></li>
 <li><a href="#Set2D">Set2D(bool a)</a></li>
@@ -45,12 +48,8 @@
 <b>HistoGUI</b> interfaces with X11 functions directly to plot data. The data and plotting functions are held within a HistoGUI class object. The class is entirely public, so data can be directly accessed, however it is recommended to populate using the commands listed here.
 <hr/>
 
-<h3 id="Init">Init()</h3>
-Initalizes the GUI objects. Is necessary for the GUI to start.
-<hr/>
-
-<h3 id="Loop">Loop()</h3>
-Starts the GUI and enters a loop.
+<h3 id="Show">Show()</h3>
+Starts the GUI - at this point the code will enter the GUI loop.
 <hr/>
 
 <h3 id="Close">Close()</h3>
@@ -73,10 +72,6 @@ Constructs a 1D histogram defined by the number of bins <code>nBins</code>, the 
 Constructs a 2D histogram defined by the number of bins in both axis <code>nBins_X</code> / <code>nBins_Y</code>, the low value <code>lowBin_X</code> / <code>lowBin_Y</code>, and the high value <code>highBin_X</code> / <code>highBin_Y</code>.
 <hr/>
 
-<h3 id="SetAxisTitles">SetAxisTitles(char* xAxis, char* yAxis)</h3>
-Set the axis titles. The same for both 1D and 2D histograms.
-<hr/>
-
 <h3 id="Fill1D">Fill(double val)</h3>
 Fill the 1D histogram. i.e. incriment the bin value that corresponds to <code>x = val</code>. This does it safely ensuring no memory errors.
 <hr/>
@@ -85,9 +80,30 @@ Fill the 1D histogram. i.e. incriment the bin value that corresponds to <code>x 
 Fill the 2D histogram. i.e. incriment the bin value that corresponds to <code>x = valX</code> and <code>y = valY</code>. This does it safely ensuring no memory errors.
 <hr/>
 
-<h3 id="SetAutoRefresh">SetAutoRefresh(bool a, long milisec)</h3>
-Sets whether the plot will auto refresh (<code>a = true</code>: refresh on), and the time inbetween refresh calls. The auto refresh can also be toggled in the GUI with a keypress of <code>s</code>. Returns milisec. 
+<h3 id="SetAxisTitles">SetAxisTitles(char* xAxis, char* yAxis)</h3>
+Set the axis titles. The same for both 1D and 2D histograms.
 <hr/>
+
+<h3 id="SetProjectionAxisTitle">SetProjectionAxisTitle(char* zAxis)</h3>
+Set the z axis title. This is only shown when projecting a 2D histogram.
+<hr/>
+
+<h3 id="SetAutoRefresh">SetAutoRefresh(bool a, long milisec)</h3>
+Sets whether the plot will auto refresh (<code>a = true</code>: refresh on), and the time inbetween refresh calls. The auto refresh can also be toggled in the GUI with a keypress of <code>s</code>. Returns milisec.
+<hr/>
+
+<h3 id="SetAdditive">SetAdditive(bool in = true)</h3>
+This sets the hitmaps to be always additive i.e. the canvas is not cleared during a refresh. This improves drawing aesthetics quite a lot.
+<hr/>
+
+<h3 id="Init">Init()</h3>
+Initalizes the GUI objects. Is necessary for the GUI to start.
+<hr/>
+
+<h3 id="Loop">Loop()</h3>
+Starts the GUI and enters a loop.
+<hr/>
+
 
 <h3 id="SetData">SetData(std::vector&ltdouble&gt a, std::vector&ltdouble&gtb)</h3>
 <p>
